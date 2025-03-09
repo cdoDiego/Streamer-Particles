@@ -10,7 +10,7 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
-            background-color: black;
+            background-color: transparent;
         }
         .particle {
             position: absolute;
@@ -21,7 +21,7 @@
             opacity: 0;
             animation: float 5s infinite ease-in-out;
         }
-        @keyframes float {
+        @keyframes float1 {
             0% {
                 opacity: 0;
                 transform: translateY(0) translateX(0);
@@ -35,15 +35,63 @@
                 transform: translateY(-100px) translateX(100px);
             }
         }
+        @keyframes float2 {
+            0% {
+                opacity: 0;
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(50px) translateX(-50px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100px) translateX(-100px);
+            }
+        }
+        @keyframes float3 {
+            0% {
+                opacity: 0;
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px) translateX(-50px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) translateX(-100px);
+            }
+        }
+        @keyframes float4 {
+            0% {
+                opacity: 0;
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(50px) translateX(50px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100px) translateX(100px);
+            }
+        }
     </style>
 </head>
 <body>
     <script>
+        function getRandomAnimation() {
+            const animations = ['float1', 'float2', 'float3', 'float4'];
+            return animations[Math.floor(Math.random() * animations.length)];
+        }
+
         function createParticle() {
             const particle = document.createElement('div');
             particle.classList.add('particle');
             particle.style.left = `${Math.random() * 100}vw`;
             particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationName = getRandomAnimation();
             particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
             document.body.appendChild(particle);
 
